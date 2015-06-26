@@ -20,6 +20,8 @@
 # limitations under the License.
 #
 
+provides :timezone
+
 action :set do
   package 'tzdata'
 
