@@ -84,6 +84,23 @@ action :set do
     end
 
     reconfigure.run_action(:run) if tz_f.updated_by_last_action?
+  when 'amazon'
+    tz_f = file '/etc/sysconfig/clock' do
+      owner 'root'
+      group 'root'
+      mode 0644
+      action :nothing
+      content %(ZONE="#{new_resource.timezone}"\n)
+    end
+
+    tz_f.run_action(:create)
+
+    tz_symlink = execute 'symlink-timezone' do
+      command "ln -sf /usr/share/zoneinfo/#{new_resource.timezone} /etc/localtime"
+      action :nothing
+    end
+
+    tz_symlink.run_action(:run) if tz_f.updated_by_last_action?
   end
 
   new_resource.updated_by_last_action(tz_f.updated_by_last_action?)
