@@ -17,6 +17,7 @@ Tested on:
 - Centos 7.0
 - Fedora 20
 - Fedora 21
+- Amazon Linux
 
 Should also work on:
 - RHEL 6
