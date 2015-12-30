@@ -56,7 +56,8 @@ action :set do
       cmd_set_tz += "set-timezone #{new_resource.timezone}"
 
       cmd_check_if_set = '/usr/bin/timedatectl status'
-      cmd_check_if_set += " | /usr/bin/awk '/Timezone/{print $2}'"
+      cmd_check_if_set += " | /usr/bin/awk -F: 'BEGIN{IGNORECASE=1} /^\s*time\s?zone/{print $2}'"
+      cmd_check_if_set += " | awk '{print $1}'"
       cmd_check_if_set += " | grep -q #{new_resource.timezone}"
 
       tz_f = execute cmd_set_tz do
