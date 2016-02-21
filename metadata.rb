@@ -8,6 +8,6 @@ version '0.1.7'
 
 supports 'centos'
 supports 'debian'
-supports 'fedora', '<= 21'
+supports 'fedora'
 supports 'rhel'
 supports 'ubuntu'
