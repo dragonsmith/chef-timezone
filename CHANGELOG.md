@@ -1,5 +1,9 @@
 # cookbook `timezone` CHANGELOG
 
+## 0.1.8 (25-08-2015)
+
+* Ubuntu 16.04 & Debian 8 support.
+
 ## 0.1.7 (09-10-2015)
 
 * Compatibility with Chef 12.4.0 and older.

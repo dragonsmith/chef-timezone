@@ -12,11 +12,14 @@ Provides LWRP to manage timezone.
 Tested on:
 - Ubuntu 12.04
 - Ubuntu 14.04
-- Debian 7.8
-- Centos 6.5
-- Centos 7.0
-- Fedora 20
-- Fedora 21
+- Ubuntu 16.04
+- Debian 7
+- Debian 8
+- Centos 6
+- Centos 7
+- Fedora 22
+- Fedora 23
+- Fedora 24
 
 Should also work on:
 - RHEL 6
