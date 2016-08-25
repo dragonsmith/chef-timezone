@@ -1,18 +1,25 @@
 ---
 driver:
   name: vagrant
+  ssh:
+    insert_key: false
+
 
 provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
-  - name: ubuntu-14.04
-  - name: debian-7.8
-  - name: centos-6.6
-  - name: centos-7.0
-  - name: fedora-20
-  - name: fedora-21
+  - name: ubuntu/precise64
+  - name: ubuntu/trusty64
+  - name: ubuntu/xenial64
+  - name: debian/wheezy64
+  - name: debian/jessie64
+  - name: centos/6
+  - name: centos/7
+  - name: bento/fedora-22
+  - name: bento/fedora-23
+  - name: bento/fedora-24
+
 
 suites:
   - name: default
