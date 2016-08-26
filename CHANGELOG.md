@@ -1,6 +1,10 @@
 # cookbook `timezone` CHANGELOG
 
-## 0.1.8 (25-08-2015)
+## 0.1.9 (26-08-2016)
+
+* Fix Test Kitchen run on Fedora >= 22.
+
+## 0.1.8 (25-08-2016)
 
 * Ubuntu 16.04 & Debian 8 support.
 
