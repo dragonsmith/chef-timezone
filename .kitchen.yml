@@ -12,6 +12,9 @@ platforms:
   - name: ubuntu/precise64
   - name: ubuntu/trusty64
   - name: ubuntu/xenial64
+    driver:
+      ssh:
+        insert_key: true
   - name: debian/wheezy64
   - name: debian/jessie64
   - name: centos/6
