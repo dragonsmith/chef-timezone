@@ -23,9 +23,21 @@
 provides :timezone if defined? provides
 
 action :set do
-  package 'tzdata'
-
   os_version = node['platform_version'].split('.')[0].to_i
+
+  if node['platform'] == 'fedora' && os_version >= 22
+    # fedora >= 22 uses dnf instead of yum.
+    # Chef resource 'yum_package' fails to run w/o
+    # python & native yum package.
+    # Cookbook dnf that should fix it fails on Test Kitchen
+    # so cannot be tested properly.
+    # I'm waiting for dnf cookbook to be fixed now.
+    execute '/bin/dnf install tzdata' do
+      not_if '/bin/rpm -qi tzdata'
+    end
+  else
+    package 'tzdata'
+  end
 
   if node['platform_family'] == 'rhel' &&
      os_version < 7
