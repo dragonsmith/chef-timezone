@@ -6,6 +6,6 @@ DEPENDENCIES
     path: test/cookbooks/timezone_test
 
 GRAPH
-  timezone_lwrp (0.1.9)
+  timezone_lwrp (0.1.10)
   timezone_test (0.1.0)
     timezone_lwrp (>= 0.0.0)
