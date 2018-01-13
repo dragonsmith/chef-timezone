@@ -60,7 +60,7 @@ action :set do
 
     reconfigure.run_action(:run) if tz_f.updated_by_last_action?
 
-  elsif %w(centos rhel fedora).include?(node['platform']) ||
+  elsif %w(centos rhel fedora redhat).include?(node['platform']) ||
         (node['platform'] == 'ubuntu' && os_version >= 16) ||
         (node['platform'] == 'debian' && os_version >= 8)
     # Modern Fedora, CentOS, RHEL, Ubuntu & Debian
