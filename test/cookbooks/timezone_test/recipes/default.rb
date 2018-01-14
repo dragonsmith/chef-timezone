@@ -19,4 +19,11 @@
 # limitations under the License.
 #
 
-timezone 'Europe/Moscow'
+execute 'test new date' do
+  command 'date > /tmp/date.log'
+  action :nothing
+end
+
+timezone 'Europe/Moscow' do
+  notifies :run, 'execute[test new date]'
+end

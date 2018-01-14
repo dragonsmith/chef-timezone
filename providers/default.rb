@@ -20,24 +20,14 @@
 # limitations under the License.
 #
 
+use_inline_resources
+
 provides :timezone if defined? provides
 
 action :set do
   os_version = node['platform_version'].split('.')[0].to_i
 
-  if node['platform'] == 'fedora' && os_version >= 22
-    # fedora >= 22 uses dnf instead of yum.
-    # Chef resource 'yum_package' fails to run w/o
-    # python & native yum package.
-    # Cookbook dnf that should fix it fails on Test Kitchen
-    # so cannot be tested properly.
-    # I'm waiting for dnf cookbook to be fixed now.
-    execute '/bin/dnf install tzdata' do
-      not_if '/bin/rpm -qi tzdata'
-    end
-  else
-    package 'tzdata'
-  end
+  package 'tzdata'
 
   if node['platform_family'] == 'rhel' &&
      os_version < 7
@@ -45,7 +35,7 @@ action :set do
     tz_f = file '/etc/sysconfig/clock' do
       owner 'root'
       group 'root'
-      mode 0644
+      mode '0644'
       action :nothing
       content %(ZONE="#{new_resource.timezone}"\n)
     end
@@ -60,7 +50,7 @@ action :set do
 
     reconfigure.run_action(:run) if tz_f.updated_by_last_action?
 
-  elsif %w(centos rhel fedora redhat).include?(node['platform']) ||
+  elsif %w[centos rhel fedora redhat].include?(node['platform']) ||
         (node['platform'] == 'ubuntu' && os_version >= 16) ||
         (node['platform'] == 'debian' && os_version >= 8)
     # Modern Fedora, CentOS, RHEL, Ubuntu & Debian
@@ -80,7 +70,7 @@ action :set do
     end
 
     tz_f.run_action(:run)
-  elsif %w(debian ubuntu).include? node['platform']
+  elsif %w[debian ubuntu].include? node['platform']
     tz_f = file '/etc/timezone' do
       action :nothing
       owner 'root'
@@ -99,8 +89,6 @@ action :set do
 
     reconfigure.run_action(:run) if tz_f.updated_by_last_action?
   end
-
-  new_resource.updated_by_last_action(tz_f.updated_by_last_action?)
 end
 
 # vim: ts=2 sts=2 sw=2 sta et

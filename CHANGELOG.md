@@ -1,5 +1,32 @@
 # cookbook `timezone` CHANGELOG
 
+## 0.1.12
+
+* Rubocop & foodcritic code style fixes.
+* Test Kitchen: verifier was switched to InSpec.
+* Test Kitchen: the list of test platforms was updated, no more outdated ones:
+  * Ubuntu 14.04
+  * Ubuntu 16.04
+  * Debian 8
+  * Debian 9
+  * Centos 6
+  * Centos 7
+  * Fedora 26
+  * Fedora 27
+* TravisCI: new ruby & secrets.
+
+## 0.1.11
+
+* Fixed support for RedHat 7.
+* Verion constraint for fedora was removed.
+
+## 0.1.10 (28-08-206)
+
+* Test Kitchen: fix vagrant options for Ubuntu Xenial to work.
+* Test Kitchen: fix image names for DigitalOcean for TravisCI builds.
+* Chef::Provider::TimezoneLwrp fix current timezone check
+
+
 ## 0.1.9 (26-08-2016)
 
 * Fix Test Kitchen run on Fedora >= 22.
