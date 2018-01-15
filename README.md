@@ -10,16 +10,14 @@ Provides LWRP to manage timezone.
 ## Platform
 
 Tested on:
-- Ubuntu 12.04
 - Ubuntu 14.04
 - Ubuntu 16.04
-- Debian 7
 - Debian 8
+- Debian 9
 - Centos 6
 - Centos 7
-- Fedora 22
-- Fedora 23
-- Fedora 24
+- Fedora 26
+- Fedora 27
 
 Should also work on:
 - RHEL 6
@@ -27,7 +25,7 @@ Should also work on:
 
 ## Chef version
 
-Chef version >= `11.16.2` has to be used.
+Chef version >= `12.14.60` has to be used.
 
 # Usage
 
@@ -54,7 +52,7 @@ timezone 'Europe/Moscow'
 
 Author:: Kirill Kouznetsov (<agon.smith@gmail.com>)
 
-Copyright:: 2015, Kirill Kouznetsov.
+Copyright:: 2018, Kirill Kouznetsov.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
