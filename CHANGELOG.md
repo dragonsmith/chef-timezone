@@ -1,5 +1,12 @@
 # cookbook `timezone` CHANGELOG
 
+## 0.2.0 (04-04-2018)
+
+* Chef 14 support was tested and enabled;
+* LWRP resource was changed to the new style chef custom resource;
+* TravisCI was configured to run Kitchen CI in its own Docker service;
+* Bundle udpate;
+
 ## 0.1.12
 
 * Rubocop & foodcritic code style fixes.

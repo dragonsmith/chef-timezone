@@ -7,6 +7,8 @@ provisioner:
 
 verifier:
   name: inspec
+  inspec_tests:
+    - path: test/integration/default
 
 platforms:
   - name: bento/ubuntu-14.04
@@ -18,8 +20,14 @@ platforms:
   - name: bento/fedora-26
   - name: bento/fedora-27
 
-
 suites:
-  - name: default
+  - name: chef-14
     run_list:
       - recipe[timezone_test]
+  - name: chef-13
+    run_list:
+      - recipe[timezone_test]
+    includes:
+      - bento/ubuntu-16.04
+    provisioner:
+      require_chef_omnibus: 13
