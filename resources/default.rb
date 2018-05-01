@@ -67,9 +67,6 @@ action :set do
   elsif %w[debian ubuntu].include? node['platform']
     file '/etc/timezone' do
       action :create
-      owner 'root'
-      group 'root'
-      mode '0644'
       content "#{new_resource.timezone}\n"
     end
 
