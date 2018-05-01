@@ -11,14 +11,19 @@ verifier:
     - path: test/integration/default
 
 platforms:
-  - name: bento/ubuntu-14.04
-  - name: bento/ubuntu-16.04
-  - name: bento/debian-8
-  - name: bento/debian-9
-  - name: bento/centos-6
-  - name: bento/centos-7
-  - name: bento/fedora-26
-  - name: bento/fedora-27
+  - name: amazonlinux
+    driver_config:
+      box: mvbcoding/awslinux
+  - name: centos-6
+  - name: centos-7
+  - name: debian-8
+  - name: debian-9
+  - name: fedora-26
+  - name: fedora-27
+  - name: opensuse-leap-42
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: ubuntu-18.04
 
 suites:
   - name: chef-14
@@ -28,6 +33,6 @@ suites:
     run_list:
       - recipe[timezone_test]
     includes:
-      - bento/ubuntu-16.04
+      - ubuntu-16.04
     provisioner:
       require_chef_omnibus: 13
