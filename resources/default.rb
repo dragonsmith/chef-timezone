@@ -20,9 +20,7 @@
 # limitations under the License.
 #
 
-provides :timezone
 resource_name :timezone
-default_action :set
 
 property :timezone, String, name_property: true
 
