@@ -25,30 +25,11 @@ resource_name :timezone
 property :timezone, String, name_property: true
 
 action :set do
-  os_version = node['platform_version'].split('.')[0].to_i
+  package 'tzdata' do
+    package_name platform_family?('suse') ? 'timezone' : 'tzdata'
+  end
 
-  package 'tzdata'
-
-  if node['platform_family'] == 'rhel' &&
-     os_version < 7
-    # Old version of RHEL & CentOS
-    file '/etc/sysconfig/clock' do
-      owner 'root'
-      group 'root'
-      mode '0644'
-      action :create
-      content %(ZONE="#{new_resource.timezone}"\n)
-    end
-
-    execute 'tzdata-update' do
-      command '/usr/sbin/tzdata-update'
-      action :nothing
-      only_if { ::File.executable?('/usr/sbin/tzdata-update') }
-      subscribes :run, 'file[/etc/sysconfig/clock]', :immediately
-    end
-  elsif %w[centos rhel fedora redhat].include?(node['platform']) ||
-        (node['platform'] == 'ubuntu' && os_version >= 16) ||
-        (node['platform'] == 'debian' && os_version >= 8)
+  if node['init_package'] == 'systemd'
     # Modern Fedora, CentOS, RHEL, Ubuntu & Debian
     cmd_set_tz = '/usr/bin/timedatectl'
     cmd_set_tz += ' '
@@ -64,7 +45,23 @@ action :set do
       action :run
       not_if cmd_check_if_set
     end
-  elsif %w[debian ubuntu].include? node['platform']
+  elsif platform_family?('rhel', 'amazon')
+    # Old version of RHEL & CentOS
+    file '/etc/sysconfig/clock' do
+      owner 'root'
+      group 'root'
+      mode '0644'
+      action :create
+      content %(ZONE="#{new_resource.timezone}"\n)
+    end
+
+    execute 'tzdata-update' do
+      command '/usr/sbin/tzdata-update'
+      action :nothing
+      only_if { ::File.executable?('/usr/sbin/tzdata-update') }
+      subscribes :run, 'file[/etc/sysconfig/clock]', :immediately
+    end
+  elsif platform_family?('debian')
     file '/etc/timezone' do
       action :create
       content "#{new_resource.timezone}\n"
