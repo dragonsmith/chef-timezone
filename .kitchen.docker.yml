@@ -89,7 +89,7 @@ platforms:
       platform: rhel
       provision_command:
         # Hack to make chef_installer.sh detect platform correctly.
-        - echo "Amazon Linux release 2" > /etc/system-release
+        - echo "Amazon Linux 2" > /etc/system-release
 
 suites:
   - name: chef-14
