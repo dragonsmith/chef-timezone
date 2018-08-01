@@ -3,7 +3,7 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero
+  product_name: chef
 
 verifier:
   name: inspec
@@ -32,7 +32,5 @@ suites:
   - name: chef-13
     run_list:
       - recipe[timezone_test]
-    includes:
-      - ubuntu-16.04
     provisioner:
-      require_chef_omnibus: 13
+      product_version: 13

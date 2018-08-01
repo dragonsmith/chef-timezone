@@ -52,7 +52,7 @@ action :set do
       group 'root'
       mode '0644'
       action :create
-      content %(ZONE="#{new_resource.timezone}"\n)
+      content %(ZONE="#{new_resource.timezone}"\nUTC="true"\n)
     end
 
     execute 'tzdata-update' do
@@ -60,6 +60,11 @@ action :set do
       action :nothing
       only_if { ::File.executable?('/usr/sbin/tzdata-update') }
       subscribes :run, 'file[/etc/sysconfig/clock]', :immediately
+    end
+
+    link '/etc/localtime' do
+      to "/usr/share/zoneinfo/#{new_resource.timezone}"
+      not_if { ::File.executable?('/usr/sbin/tzdata-update') }
     end
   elsif platform_family?('debian')
     file '/etc/timezone' do

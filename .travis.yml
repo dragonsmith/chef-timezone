@@ -19,6 +19,7 @@ env:
   global:
   - KITCHEN_YAML=.kitchen.docker.yml
   matrix:
+    - INSTANCE=chef-14-ubuntu-1804-docker
     - INSTANCE=chef-14-ubuntu-1404-docker
     - INSTANCE=chef-14-ubuntu-1604-docker
     - INSTANCE=chef-14-debian-8-docker
@@ -27,7 +28,19 @@ env:
     - INSTANCE=chef-14-centos-7-docker
     - INSTANCE=chef-14-fedora-26-docker
     - INSTANCE=chef-14-fedora-27-docker
+    - INSTANCE=chef-14-opensuse-leap-42-docker
+    - INSTANCE=chef-14-amazonlinux-2-docker
+    - INSTANCE=chef-13-ubuntu-1404-docker
     - INSTANCE=chef-13-ubuntu-1604-docker
+    - INSTANCE=chef-13-ubuntu-1804-docker
+    - INSTANCE=chef-13-debian-8-docker
+    - INSTANCE=chef-13-debian-9-docker
+    - INSTANCE=chef-13-centos-6-docker
+    - INSTANCE=chef-13-centos-7-docker
+    - INSTANCE=chef-13-fedora-26-docker
+    - INSTANCE=chef-13-fedora-27-docker
+    - INSTANCE=chef-13-opensuse-leap-42-docker
+    - INSTANCE=chef-13-amazonlinux-2-docker
 jobs:
   include:
     - stage: lint

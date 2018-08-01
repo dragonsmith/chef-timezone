@@ -5,7 +5,7 @@ driver:
   privileged: true
 
 provisioner:
-  name: chef_zero
+  product_name: chef
 
 verifier:
   name: inspec
@@ -21,6 +21,14 @@ platforms:
   - name: ubuntu-16.04-docker
     driver_config:
       image: ubuntu:16.04
+      disable_upstart: false
+      run_command: '/lib/systemd/systemd'
+      provision_command:
+        - apt-get install -y dbus
+        - systemctl set-default multi-user.target
+  - name: ubuntu-18.04-docker
+    driver_config:
+      image: ubuntu:18.04
       disable_upstart: false
       run_command: '/lib/systemd/systemd'
       provision_command:
@@ -67,6 +75,21 @@ platforms:
       provision_command:
         - dnf install -y dbus
         - systemctl set-default multi-user.target
+  - name: opensuse-leap-42-docker
+    driver_config:
+      image: opensuse/leap:42.3
+      run_command: '/bin/systemd'
+      provision_command:
+        - zypper install -y dbus-1
+        - systemctl enable sshd
+  - name: amazonlinux-2-docker
+    driver_config:
+      image: amazonlinux:2
+      run_command: '/sbin/init'
+      platform: rhel
+      provision_command:
+        # Hack to make chef_installer.sh detect platform correctly.
+        - echo "Amazon Linux release 2" > /etc/system-release
 
 suites:
   - name: chef-14
@@ -75,8 +98,5 @@ suites:
   - name: chef-13
     run_list:
       - recipe[timezone_test]
-    includes:
-      - ubuntu-16.04-docker
     provisioner:
-      product_name: chef
       product_version: 13

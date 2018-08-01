@@ -1,5 +1,14 @@
 # cookbook `timezone` CHANGELOG
 
+## 0.2.1 (01-08-2018)
+
+* Small resource refactoring (thanks to @tas50);
+* More platforms for testing/support;
+  * Ubuntu 18.04
+  * Amazon Linux 2017.03
+  * Amazon Linux 2
+  * openSUSE Leap 42
+
 ## 0.2.0 (04-04-2018)
 
 * Chef 14 support was tested and enabled;
