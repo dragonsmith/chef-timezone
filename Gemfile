@@ -7,7 +7,6 @@ group :development do
   gem 'foodcritic'
   gem 'inspec'
   gem 'ipaddr_extensions'
-  gem 'kitchen-digitalocean'
   gem 'kitchen-docker'
   gem 'kitchen-inspec'
   gem 'kitchen-vagrant'
@@ -15,6 +14,5 @@ group :development do
   gem 'rubocop'
   gem 'stove'
   gem 'test-kitchen'
-  gem 'thor'
   gem 'vagrant-berkshelf'
 end
