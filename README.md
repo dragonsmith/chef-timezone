@@ -1,6 +1,14 @@
 [![Chef cookbook](https://img.shields.io/cookbook/v/timezone_lwrp.svg)](https://github.com/dragonsmith/timezone_lwrp)
 [![Build Status](https://travis-ci.org/dragonsmith/timezone_lwrp.svg?branch=master)](https://travis-ci.org/dragonsmith/timezone_lwrp)
 
+# Deprecation warning!
+
+The resource provided by this cookbook was integrated into Chef itself: https://github.com/chef/chef/pull/7736
+
+You do not need to use this cookbook starting from Chef client [v14.6.47 (2018-10-26)](https://github.com/chef/chef/blob/master/CHANGELOG.md#v14647-2018-10-26)
+
+No new versions are planned to be released, please consider upgrading to an up-to-date Chef client version.
+
 # Description
 
 Provides LWRP to manage timezone.

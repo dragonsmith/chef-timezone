@@ -1,5 +1,10 @@
 # cookbook `timezone` CHANGELOG
 
+## 0.2.2 (22-11-2018)
+
+* Informational release
+* The resource was merged to the Chef client v14.6.47, so the future support of this cookbook will be stopped. Please consider an upgrade to an up-to-date Chef client version.
+
 ## 0.2.1 (01-08-2018)
 
 * Small resource refactoring (thanks to @tas50);
@@ -14,7 +19,7 @@
 * Chef 14 support was tested and enabled;
 * LWRP resource was changed to the new style chef custom resource;
 * TravisCI was configured to run Kitchen CI in its own Docker service;
-* Bundle udpate;
+* Bundle update;
 
 ## 0.1.12
 
